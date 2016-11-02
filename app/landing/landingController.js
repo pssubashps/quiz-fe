@@ -7,7 +7,7 @@ myapp.controller('landingController', function($scope, $location, $parse, $inter
   $scope.question = {};
   $scope.questions = [];
   $scope.Timer = null;
-
+  $scope.showTimer = false;
   $scope.showSubmit = true;
   var interval;
 
@@ -15,6 +15,11 @@ myapp.controller('landingController', function($scope, $location, $parse, $inter
   var initialOffset = '440';
   var i = 1;
 
+  function setTimerVals() {
+    time = 10;
+    initialOffset = '440';
+    i = 1;
+  }
 
   function StopTimer() {
 
@@ -75,10 +80,12 @@ myapp.controller('landingController', function($scope, $location, $parse, $inter
   }
 
   function nextQuestion() {
-
+    setTimerVals();
+    $scope.showTimer = false;
     myIndex = getNext($scope.totalQuestions);
     console.log("Reading " + myIndex);
     $scope.question = $scope.questions[myIndex];
+    $scope.showTimer = true;
     StopTimer();
     timerStart();
   }
@@ -129,7 +136,7 @@ myapp.controller('landingController', function($scope, $location, $parse, $inter
     $scope.userans = false;
   }
   $scope.validateAnswer = function() {
-
+    StopTimer();
     resetValidtionKeys();
 
 
