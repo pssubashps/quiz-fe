@@ -1,14 +1,56 @@
 /**
  * http://usejsdoc.org/
  */
-myapp.controller('landingController', function($scope, $location, $parse, questionFactory) {
+myapp.controller('landingController', function($scope, $location, $parse, $interval, questionFactory) {
   $scope.validationFlag = false;
   $scope.totalQuestions = 0;
   $scope.question = {};
   $scope.questions = [];
+  $scope.Timer = null;
 
   $scope.showSubmit = true;
   var interval;
+
+  var time = 10;
+  var initialOffset = '440';
+  var i = 1;
+
+
+  function StopTimer() {
+
+
+
+    //Cancel the Timer.
+    if (angular.isDefined($scope.Timer)) {
+      $interval.cancel($scope.Timer);
+
+    }
+  };
+
+  function StartTimer() {
+
+    //Initialize the Timer to run every 1000 milliseconds i.e. one second.
+    $scope.Timer = $interval(function() {
+
+      $('h2').text(i);
+      if (i == time) {
+
+        StopTimer();
+        $scope.validateAnswer();
+        return;
+      }
+
+      $scope.stroke_dashoffset = {
+        'stroke-dashoffset': (initialOffset - ((i + 1) * (initialOffset / time)))
+
+      };
+      console.log($scope.stroke_dashoffset);
+      //  $scope.stroke_dashoffset =  initialOffset-((i+1)*(initialOffset/time));
+      //$('.circle_animation').css('stroke-dashoffset',);
+      i++;
+    }, 1000);
+  };
+
   function resetValidtionKeys() {
     console.log("reset");
     $scope.option1_wrong = false;
@@ -37,7 +79,8 @@ myapp.controller('landingController', function($scope, $location, $parse, questi
     myIndex = getNext($scope.totalQuestions);
     console.log("Reading " + myIndex);
     $scope.question = $scope.questions[myIndex];
-    startTimer();
+    StopTimer();
+    timerStart();
   }
 
   function getNext(max) {
@@ -86,7 +129,7 @@ myapp.controller('landingController', function($scope, $location, $parse, questi
     $scope.userans = false;
   }
   $scope.validateAnswer = function() {
-     clearInterval(interval);
+
     resetValidtionKeys();
 
 
@@ -109,39 +152,21 @@ myapp.controller('landingController', function($scope, $location, $parse, questi
 
   }
 
-  function startTimer() {
-    var time = 10;
-    var initialOffset = '440';
-    var i = 1;
+  function timerStart() {
+    time = 10;
+    initialOffset = '440';
+    i = 1;
     $scope.stroke_dashoffset = {
       'stroke-dashoffset': (initialOffset - (1 * (initialOffset / time)))
     };
+    StartTimer();
 
-    // $('.circle_animation').css('stroke-dashoffset', );
-
-    interval = setInterval(function() {
-      $('h2').text(i);
-      if (i == time) {
-        clearInterval(interval);
-        $scope.validateAnswer();
-        return;
-      }
-
-      $scope.stroke_dashoffset = {
-        'stroke-dashoffset': (initialOffset - ((i + 1) * (initialOffset / time)))
-
-      };
-      console.log($scope.stroke_dashoffset);
-      //  $scope.stroke_dashoffset =  initialOffset-((i+1)*(initialOffset/time));
-      //$('.circle_animation').css('stroke-dashoffset',);
-      i++;
-    }, 1000);
   }
 
   function init() {
     getQuestions();
     resetValidtionKeys();
-    startTimer();
+    timerStart();
 
   }
   init();
