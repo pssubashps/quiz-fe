@@ -5,7 +5,7 @@
 myapp.config(['$routeProvider',
   function($routeProvider,$stateProvider) {
     $routeProvider.
-    when('/', {
+    when('/test', {
         templateUrl: 'app/landing/landing.html',
         controller: 'landingController'
       }).
@@ -18,6 +18,6 @@ myapp.config(['$routeProvider',
         controller: 'questionController'
       }).
       otherwise({
-        redirectTo: '/'
+        redirectTo: '/quiz'
       });
   }]);
