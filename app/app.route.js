@@ -13,7 +13,10 @@ myapp.config(['$routeProvider',
         templateUrl: 'app/landing/question.html',
         controller: 'landingController'
       }).
-    	
+    	 when('/quiz', {
+        templateUrl: 'app/questionset/question.html',
+        controller: 'questionController'
+      }).
       otherwise({
         redirectTo: '/'
       });
