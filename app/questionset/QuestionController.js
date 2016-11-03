@@ -68,6 +68,7 @@ myapp.controller('questionController', function($scope, $location, $parse, $inte
 	}
 
 	function getNextQuestion() {
+		$scope.userans = false;
 		if (questionIndex >= $scope.questions.length) {
 			$scope.completed = true;
 			calculateScore();
