@@ -1,0 +1,61 @@
+<div class="container1">
+   <form class="well form-horizontal"  name="contact_form" ng-submit="send(contact_form.$valid)" novalidate>
+      <fieldset>
+         <!-- Form Name -->
+         <legend>Contact Us Today!</legend>
+         <!-- Text input-->
+         <div class="form-group">
+            <label class="col-md-4 control-label">Name</label>  
+            <div class="col-md-4 inputGroupContainer">
+               <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input  name="first_name" placeholder="First Name" class="form-control"  type="text" ng-model="contact.name" required>
+
+                    
+               </div>
+               <span ng-show="contact_form.first_name.$touched && contact_form.first_name.$invalid">The name is required.</span>
+            </div>
+         </div>
+            
+        
+         <!-- Text input-->
+         <div class="form-group">
+            <label class="col-md-4 control-label">E-Mail</label>  
+            <div class="col-md-4 inputGroupContainer">
+               <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                  <input name="email" placeholder="E-Mail Address" class="form-control"  type="email" ng-model="contact.email" required>
+
+
+               </div>
+
+               <span ng-show="contact_form.email.$touched && contact_form.email.$invalid">The Email is required.</span>
+            </div>
+         </div>
+        
+        
+         
+         <!-- Text area -->
+         <div class="form-group">
+            <label class="col-md-4 control-label">Comments</label>
+            <div class="col-md-4 inputGroupContainer">
+               <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                  <textarea ng-model="contact.comments" class="form-control" name="comment" placeholder="Comments" required></textarea>
+               </div>
+               <span ng-show="contact_form.comment.$touched && contact_form.comment.$invalid">The comment is required.</span>
+            </div>
+         </div>
+         <!-- Success message -->
+         <div ng-show="show_success" class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+         <!-- Button -->
+         <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-4">
+               <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+            </div>
+         </div>
+      </fieldset>
+   </form>
+</div>
+</div><!-- /.container -->

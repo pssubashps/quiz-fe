@@ -21,6 +21,10 @@ myapp.config(['$routeProvider',
         templateUrl: 'app/questionset/start.html',
         controller: 'questionStartController'
       }).
+          when('/contact', {
+        templateUrl: 'app/contact/contact-form.html',
+        controller: 'contactController'
+      }).
       otherwise({
         redirectTo: '/quizstart'
       });
