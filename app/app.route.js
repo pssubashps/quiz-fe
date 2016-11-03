@@ -17,7 +17,11 @@ myapp.config(['$routeProvider',
         templateUrl: 'app/questionset/question.html',
         controller: 'questionController'
       }).
+        when('/quizstart', {
+        templateUrl: 'app/questionset/start.html',
+        controller: 'questionStartController'
+      }).
       otherwise({
-        redirectTo: '/quiz'
+        redirectTo: '/quizstart'
       });
   }]);

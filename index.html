@@ -8,6 +8,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+<link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
 
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
@@ -22,6 +23,9 @@
 <script src="app/landing/landingController.js"></script>
 <script src="app/timer/TimerController.js"></script>
 <script src="app/questionset/QuestionController.js"></script>
+<script src="app/questionset/QuestionStartController.js"></script>
+<script src="app/questionset/isReaderService.js"></script>
+
 
 <link rel="stylesheet"
 	href="bower_components/angular-ui-grid/ui-grid.min.css">
@@ -43,7 +47,7 @@
 			<div ng-include src="'app/partials/menu.html'"></div>
 			<!-- Menu Ends Here -->
 			<div ng-include src="'app/partials/clock.html'"></div>
-			<div class="quiz" ng-view>
+			<div class="quiz view-slide-in"  ng-view>
 				<!-- Main COntent goes here Start-->
 
 				<!-- Main COntent goes here End-->

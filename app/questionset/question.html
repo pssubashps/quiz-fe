@@ -14,7 +14,12 @@
 </div>
 
 
-<form  name="regForm"  ng-submit="submitForm()"  ng-animate="'animate'" ng-show="!completed">
+<form  name="regForm"  ng-submit="submitForm()"  ng-animate="'animate'" ng-show="!completed" >
+
+<div style="float: right; padding: 10px;font-weight: bold; color: blue;">
+    <div>Remainging time : {{remaining_time_formated}}</div>
+</div>
+<br/><br/>
 	<div class="form-group">
 		<label for="usr">({{question_number}}) Question:</label> 
 		<span>{{question.title}}</span>
