@@ -1,8 +1,9 @@
 //ContactController.js
 
-myapp.controller('contactController', function($scope,contactFactory) {
+myapp.controller('contactController', function($rootScope,$scope,contactFactory) {
 	$scope.contact = {};
 	$scope.show_success = false;
+	$rootScope.page_title = "Contact Me ";
 	function init () {
 		$scope.show_success = false;
 	};

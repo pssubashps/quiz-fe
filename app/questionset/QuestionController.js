@@ -1,13 +1,13 @@
 //questionController.js
 
-myapp.controller('questionController', function($scope, $location, $parse, $interval, questionFactory, isReaderService) {
+myapp.controller('questionController', function($rootScope,$scope, $location, $parse, $interval, questionFactory, isReaderService) {
 	let questionIndex = 0,
 		remaining_time = 0;
 	$scope.showSubmit = true;
 	$scope.completed = false;
 	$scope.score = 0;
 	$scope.remaining_time_formated = 0;
-
+	$rootScope.page_title = "Welcome ";
 	function init() {
 
 		if (!isReaderService.getIsReadyToStart()) {
@@ -68,11 +68,14 @@ myapp.controller('questionController', function($scope, $location, $parse, $inte
 	}
 
 	function getNextQuestion() {
+		$rootScope.page_title = "Contact Me ";
 		$scope.userans = false;
 		if (questionIndex >= $scope.questions.length) {
+			$rootScope.page_title = "Completed";
 			$scope.completed = true;
 			calculateScore();
 		} else {
+			$rootScope.page_title = $scope.questions[questionIndex].title;
 			$scope.showSubmit = true;
 			$scope.question = $scope.questions[questionIndex];
 
