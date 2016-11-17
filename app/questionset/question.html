@@ -12,9 +12,9 @@
      </g>
     </svg>
 </div>
+<div ng-show="!isQuestionsLoaded" >Loading .....</div>
 
-
-<form  name="regForm"  ng-submit="submitForm()"  ng-animate="'animate'" ng-show="!completed" >
+<form  name="regForm"  ng-submit="submitForm()"  ng-animate="'animate'" ng-show="!completed && isQuestionsLoaded" >
 
 <div style="float: right; padding: 10px;font-weight: bold; color: blue;">
     <div>Remainging time : {{remaining_time_formated}}</div>

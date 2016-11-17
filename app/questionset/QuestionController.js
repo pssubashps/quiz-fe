@@ -1,6 +1,6 @@
 //questionController.js
 
-myapp.controller('questionController', function($rootScope,$scope, $location, $parse, $interval, questionFactory, isReaderService) {
+myapp.controller('questionController', function ($rootScope, $scope, $location, $parse, $interval, questionFactory, isReaderService) {
 	let questionIndex = 0,
 		remaining_time = 0;
 	$scope.showSubmit = true;
@@ -8,6 +8,7 @@ myapp.controller('questionController', function($rootScope,$scope, $location, $p
 	$scope.score = 0;
 	$scope.remaining_time_formated = 0;
 	$rootScope.page_title = "Welcome ";
+	$scope.isQuestionsLoaded = false;
 	function init() {
 
 		if (!isReaderService.getIsReadyToStart()) {
@@ -27,7 +28,7 @@ myapp.controller('questionController', function($rootScope,$scope, $location, $p
 	function StartTimer() {
 
 		//Initialize the Timer to run every 1000 milliseconds i.e. one second.
-		$scope.Timer = $interval(function() {
+		$scope.Timer = $interval(function () {
 
 			if (remaining_time <= 0) {
 				StopTimer();
@@ -57,13 +58,14 @@ myapp.controller('questionController', function($rootScope,$scope, $location, $p
 	}
 
 	function getQuestionSet() {
-		questionFactory.getQuestionSet().then(function(response) {
+		questionFactory.getQuestionSet().then(function (response) {
 			$scope.totalQuestions = response.data.length;
 			$scope.questions = response.data;
 			remaining_time = $scope.questions.length * 30;
 			$scope.remaining_time_formated = secondsToHH_MM_SS(remaining_time);
 			StartTimer();
 			getNextQuestion();
+			$scope.isQuestionsLoaded = true;
 		});
 	}
 
@@ -86,7 +88,7 @@ myapp.controller('questionController', function($rootScope,$scope, $location, $p
 
 	function calculateScore() {
 		var scoreCounter = 0;
-		angular.forEach($scope.questions, function(value, key) {
+		angular.forEach($scope.questions, function (value, key) {
 			if (value.useranswer === value.correct_answer) {
 				scoreCounter++;
 			}
@@ -94,7 +96,7 @@ myapp.controller('questionController', function($rootScope,$scope, $location, $p
 		$scope.score = scoreCounter;
 		isReaderService.setIsReadyToStart(false);
 	}
-	$scope.validateAnswer = function() {
+	$scope.validateAnswer = function () {
 		//StopTimer();
 
 
