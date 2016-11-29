@@ -1,66 +1,62 @@
-<br/>
-<div ng-show="completed">
-<h3>Quiz Completed</h3>
-<h5>Your Score is {{score}}</h5>
-</div>
-<div class="item html" style="float:right" ng-show="showTimer">
-    <h2>0</h2>
-    <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
-     <g>
-      <title>Layer 1</title>
-      <circle id="circle" ng-style="stroke_dashoffset" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width="8" stroke="#6fdb6f" fill="none"/>
-     </g>
-    </svg>
-</div>
+
+<div class="panel-body">
+	<div ng-show="completed">
+		<h3>Quiz Completed</h3>
+		<h5>Your Score is {{score}}</h5>
+	</div>
+
+
 <div ng-show="!isQuestionsLoaded" >Loading .....</div>
 
 <form  name="regForm"  ng-submit="submitForm()"  ng-animate="'animate'" ng-show="!completed && isQuestionsLoaded" >
-
-<div style="float: right; padding: 10px;font-weight: bold; color: blue;">
+	<div style="float: right; padding: 10px;font-weight: bold; color: blue;">
     <div>Remainging time : {{remaining_time_formated}}</div>
 </div>
 <br/><br/>
-	<div class="form-group">
-		<label for="usr">({{question_number}}) Question:</label> 
-		<span>{{question.title}}</span>
-	</div>
-	<div class="form-group"> 
-	  <input type="radio" ng-model="userans" value="1" ng-required></input>
 
-		<label for="usr">Option (a) :</label> 
-		<span>{{question.answer1}}</span>
+	<ul class="list-group">
+		<li  class="list-group-item">({{question_number}}) Question:
+			<span>{{question.title}}</span>
+		</li>
 
-	</div>
+		<li  class="list-group-item">
+			<input type="radio" ng-model="userans" value="1" ng-required></input>
+			<label for="usr">Option (a) :</label> 
+			<span>{{question.answer1}}</span>
+		</li>
 
-	<div class="form-group">
-		<input type="radio" ng-model="userans" value="2" ng-required></input>
+		<li  class="list-group-item">
+				<input type="radio" ng-model="userans" value="2" ng-required></input>
 		<label for="usr">Option (b) :</label> 
 		<span>{{question.answer2}}</span>
-	
+		</li>
 
-	<div class="form-group"> 
-	  <input type="radio" ng-model="userans" value="3" ng-required></input>
+		<li  class="list-group-item">
+			 <input type="radio" ng-model="userans" value="3" ng-required></input>
 
 		<label for="usr">Option (c) :</label> 
 		<span>{{question.answer3}}</span>
 		
+		</li>
+	
 
-
-	</div>
-
-
-	<div class="form-group"> 
-	  <input type="radio" ng-model="userans" value="4" ng-required></input>
+		<li  class="list-group-item">
+			 <input type="radio" ng-model="userans" value="4" ng-required></input>
 
 		<label for="usr">Option (d) :</label> 
 		<span>{{question.answer4}}</span>
+		</li>
 	
-
-
-	</div>
-	<div class="form-group">
-		<input type="button" ng-click="validateAnswer()" class="btn btn-primary active" value="Answer" ng-show="showSubmit"/>
+		<li  class="list-group-item">
+			<input type="button" ng-click="validateAnswer()" class="btn btn-primary active" value="Answer" ng-show="showSubmit"/>
 
 		<input type="button"  ng-click="nextQuestion()" class="btn btn-default" value="Next" ng-show="!showSubmit" style="margin-left:250px;" />
-	</div>
+		</li>
+	
 </form>
+
+
+
+
+	</div>
+

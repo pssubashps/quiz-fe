@@ -1,0 +1,11 @@
+<form name="newsletter_form" class="form-inline"  ng-submit="send(newsletter_form.$valid)" novalidate>
+  			<div class="form-group">
+    			<label for="email">Subscribe for updates:</label>
+				<span ng-show="newsletter_form.newsletter_email.$touched && newsletter_form.newsletter_email.$invalid">The Email is required.</span>
+   				 <input ng-model="newsletter.email" name = "newsletter_email" type="email" class="form-control" id="email" placeholder="Enter your email address">
+					
+ 			 </div>
+   			<button  ng-show = "!show_success" type="submit" class="btn btn-default">Submit</button>
+			   <br/>  <br/>
+			<p  ng-show = "show_success" class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for subscribing with us, we will get back to you shortly.</p>   
+		</form>
